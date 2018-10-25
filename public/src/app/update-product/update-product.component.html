@@ -1,0 +1,105 @@
+<head>
+    <style>
+    button{
+      margin:3px;
+      background-color:silver;
+      border-radius:8px;
+      color:white;
+     
+    }
+    form{
+      box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+      border-radius:8px;
+      background: linear-gradient(-180deg, white,ghostwhite);
+      color:black;
+      padding:10px;
+      max-width:400px;
+      padding:20px;
+    }
+    label{
+      margin:0px 10px 0px 0px;
+      
+      
+    }
+    small{
+      margin-left:5px;
+    }
+    h2{
+      display:inline;
+      margin-right:300px;
+
+    }
+    h5{
+      color:firebrick;
+    }
+    h3{
+      margin-left:20px;
+    }
+  .container{
+    border:2px solid white;
+    width:600px;
+    border-radius: 8px;
+    padding:20px;
+  }
+  </style>
+
+</head>
+<body>
+    <div class= "container">
+  <h2>Update Product</h2>
+  <button [routerLink] ="['/products']">Home</button>
+  <ul>
+    <ol></ol>
+    <ol></ol>
+  </ul>
+
+  <form >
+      <label>Name:</label>
+      <input 
+        type="text" 
+        name="name" 
+        [(ngModel)]="ProductInfo.name"
+        required
+        minlength="2"
+        #name="ngModel"
+        /><small *ngIf="name.touched && name.invalid">Invalid product name</small>
+        <h5>{{messages.name.message}}</h5>
+        <label>Quantity</label>
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="ProductInfo.quantity"
+        required
+        min=0
+        #quantity = "ngModel"
+      /><small *ngIf="quantity.touched && quantity.invalid || ProductInfo.quantity<0">Invalid quantity</small>
+      <h5>{{messages.quantity.message}}</h5>
+      <label>Price: </label>
+      <input
+          type="string"
+          name="displayPrice" 
+          [(ngModel)]="ProductInfo.displayPrice"
+          required
+          min=0
+          #displayPrice = "ngModel"/>
+          
+      
+        <small *ngIf="displayPrice.touched && displayPrice.invalid || 
+      (!ProductInfo.displayPrice.includes('$')) || ProductInfo.displayPrice.slice(1)<0 
+      ||(ProductInfo.displayPrice.includes('-'))">Invalid price</small>
+      <h5>{{messages.price.message}}</h5>
+  
+      <button (click)="singleProduct(ProductInfo.id)">Reset</button>
+      
+      <button id = "submitButton" 
+      *ngIf="name.valid && quantity.valid 
+      && displayPrice.valid 
+      &&ProductInfo.quantity>=0 
+      && ProductInfo.displayPrice.includes('$') 
+      && ProductInfo.displayPrice.slice(1)>0 
+      && (!ProductInfo.displayPrice.includes('-'))" type="submit" (click)="updateProduct(ProductInfo.displayPrice)">Updates</button>
+    
+    </form>
+  </div>
+  
+  </body>

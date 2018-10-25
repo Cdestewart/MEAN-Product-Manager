@@ -1,0 +1,74 @@
+<head>
+  <style>
+    body{
+      
+      border:2px solid white;
+      border-radius:8px;
+      width:900px;
+      min-height:400px;
+      padding:20px;
+      
+    }
+    button{
+      margin:3px;
+      background-color:silver;
+      border-radius:8px;
+      color:white;
+      background:linear(slategray,ghostwhite);
+    }
+    table, th, td {
+
+    border-collapse: collapse;
+    padding: 15px;
+    
+    }
+
+    table{
+      box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+      border-radius:8px;
+      background: linear-gradient(-180deg, white,ghostwhite);
+      color:black;
+      padding:10px;
+      margin-top:30px;
+    }
+    .view{
+      background: radial-gradient(circle,#9087c4,#8f86c5);
+    }
+    .edit{
+      background: radial-gradient(circle,#f5cf6e, peru)
+    }
+    h2{
+      display:inline;
+      margin-right:600px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+<h2>Product List</h2>
+<button [routerLink] ="['/products/new']">Add a New Product</button>
+</div>
+
+<table>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+      <th>QTY</th>
+      <th>Price</th>
+      <th>Actions Available</th>
+    </tr>
+    <tr *ngFor="let product of ProductInfo">
+      
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.quantity}}</td>
+        <td>${{product.displayPrice}}</td>
+
+        <td><button [routerLink] ="['/products',product.id,'edit']">Edit</button>
+          <button [routerLink] ="['/products',product.id]">Details</button></td>
+      </tr>
+  
+  </table>
+
+
+</body>

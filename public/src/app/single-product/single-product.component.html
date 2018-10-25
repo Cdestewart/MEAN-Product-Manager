@@ -1,0 +1,66 @@
+<head>
+    <style>
+    button{
+      margin:3px;
+      background-color:silver;
+      border-radius:8px;
+      color:white;
+     
+    }
+    form{
+      box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+      border-radius:8px;
+      background: linear-gradient(-180deg, white,ghostwhite);
+      color:black;
+      padding:10px;
+      max-width:400px;
+      padding:20px;
+    }
+    label{
+      margin:0px 10px 0px 0px;
+      
+      
+    }
+    small{
+      margin-left:5px;
+    }
+    h2{
+      display:inline;
+      margin-right:300px;
+
+    }
+    h5{
+      color:firebrick;
+    }
+    h3{
+      margin-left:20px;
+    }
+  .container{
+    border:2px solid white;
+    width:600px;
+    border-radius: 8px;
+    padding:20px;
+  }
+  .btn{
+    display:inline;
+  }
+  </style>
+</head>
+<body>
+    <div class= "container">
+  <h2>Product Details</h2>
+  <button [routerLink] ="['/products']">Home</button>
+  <ul>
+    <ol></ol>
+    <ol></ol>
+  </ul>
+
+    <h3>Name: {{ProductInfo.name}}</h3>
+    <h3>Quantity: {{ProductInfo.quantity}}</h3>
+    <h3>Price: ${{ProductInfo.displayPrice}}</h3>
+ 
+
+    <button [routerLink]="['/products']">Cancel</button>
+    <div class ="btn" *ngIf = "ProductInfo.quantity == 0"><button (click)="deleteProduct()">Delete</button></div>
+  </div>
+  </body>

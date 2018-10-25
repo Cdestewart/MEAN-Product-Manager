@@ -1,0 +1,82 @@
+<head>
+    <style>
+    button{
+      margin:3px;
+      background-color:silver;
+      border-radius:8px;
+      color:white;
+     
+    }
+    form{
+      box-shadow: -1px -3px 27px 5px rgb(189, 189, 189) inset;
+      border-radius:8px;
+      background: linear-gradient(-180deg, white,ghostwhite);
+      color:black;
+      padding:10px;
+      max-width:400px;
+      padding:20px;
+    }
+    label{
+      margin:0px 10px 0px 0px;
+      
+      
+    }
+    small{
+      margin-left:5px;
+    }
+    h2{
+      display:inline;
+      margin-right:300px;
+      margin-left:10px;
+    }
+    h5{
+      color:firebrick;
+    }
+  </style>
+</head>
+<body>
+  
+  <h2>New Product</h2>
+  <button [routerLink] ="['/products']">Home</button>
+  <ul>
+    <ol></ol>
+    <ol></ol>
+  </ul>
+  
+  <form (submit)="addProduct()">
+    <label>Name:</label>
+    <input 
+      type="text" 
+      name="name" 
+      [(ngModel)]="ProductInfo.name"
+      required
+      minlength="3"
+      #name="ngModel"
+      /><small *ngIf="name.touched && name.invalid">Invalid product name</small>
+      <h5>{{messages.name.message}}</h5>
+      <label>Quantity</label>
+    <input
+      type="number"
+      name="quantity"
+      [(ngModel)]="ProductInfo.quantity"
+      required
+      min="0"
+      #quantity = "ngModel"
+    /><small *ngIf="quantity.touched && quantity.invalid || ProductInfo.quantity<0">Invalid quantity</small>
+    <h5>{{messages.quantity.message}}</h5>
+    <label>Price: </label>$
+    <input
+      type="number"
+      name="price"
+      [(ngModel)]="ProductInfo.price"
+      required
+      min="0"
+      #price = "ngModel"
+    /><small *ngIf="price.touched && price.invalid || ProductInfo.price<0">Invalid price</small>
+    <h5>{{messages.price.message}}</h5>
+  
+    <button [routerLink]="['/products']">Cancel</button>
+    <small ></small>
+    <button *ngIf="name.valid && quantity.valid && price.valid && ProductInfo.price>0 && ProductInfo.price>0 " type="submit">Create</button>
+  </form>
+  </body>
